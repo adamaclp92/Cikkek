@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>HETILAP</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - MODELLEK -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-left" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">MODELLEK</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - HETILAP -->
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fas fa-table"></i>
+          <span>HETILAP</span></a>
+      </li>
+
+       <!-- Divider -->
+       <hr class="sidebar-divider my-0">
+
+       <!-- Nav Item - ONLINE -->
+       <li class="nav-item active">
+         <a class="nav-link" href="#">
+           <i class="fas fa-globe-americas"></i>
+           <span>ONLINE</span></a>
+       </li>
+
+        <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - HETILAP+ONLINE -->
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fas fa-link"></i>
+          <span>HETILAP+ONLINE</span></a>
+      </li>
+
+       <!-- Divider -->
+       <hr class="sidebar-divider my-0">
+
+      <!-- Sidebar - DEMÓ -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-left" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-tags"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">DEMÓ
+        </div>
+      </a>
+
+       <!-- Divider -->
+       <hr class="sidebar-divider my-0">
+
+       <!-- Nav Item - CÍMKÉZŐ -->
+       <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fas fa-user-tag"></i>
+          <span>CÍMKÉZŐ</span></a>
+      </li>
+
+       <!-- Divider -->
+       <hr class="sidebar-divider my-0">
+
+       <!-- Nav Item - TANÍTÓ -->
+       <li class="nav-item active">
+        <a class="nav-link" href="#">
+          <i class="fas fa-cogs"></i>
+          <span>TANÍTÓ</span></a>
+      </li>
+
+    
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800 p-md-2 row align-items-start">címkeajánló - HETILAP</h1>
+          </div>  
+          
+            <p class="font-weight-bold text-gray-800 p-md-1 row align-items-start">Cikkek listája:</p>
+        
+                  <div class="row align-items-start ">
+                    <select class="col-md-8 text-m font-weight-bold rounded-sm border p-md-1 m-1" id="titles" onclick="ListItems()">
+                    </select>
+               
+                    <nav aria-label="Page navigation example p-md-1 mr-2 ">
+                      <ul class="pagination justify-content-center p-md-1">
+                        <li class="page-item">
+                          <a class="page-link bg-light text-dark" href="javascript:firstPage()"><<</a>
+                        </li>
+                        <li class="page-item"><a class="page-link bg-light text-dark" href="javascript:prevPage()"><</a></li>
+                        <p class = "m-2 font-weight-bold text-primary">Oldal <span id="page"></span></p> 
+                        <li class="page-item"><a class="page-link bg-light text-dark" href="javascript:nextPage()">></a></li>
+                        <li class="page-item">
+                          <a class="page-link bg-light text-dark" href="javascript:lastPage()">>></a>
+                        </li>
+                       
+                      </ul>
+                      
+                    </nav>
+                  </div>
+
+                  <div class="row mb-2">
+                  <label class="customRange1" style="margin-left: 1rem">Valószínűség: <span class="font-weight-bold" id="sliderOutput"></span></label>
+
+                  <div class="col-auto offset-7">
+                    <div class="custom-control custom-checkbox ">
+                      <input type="checkbox" class="custom-control-input" id="customControlAutosizing" onclick="ListItems()">
+                      <label class="custom-control-label" for="customControlAutosizing" >min. 3</label>
+                    </div>
+                  </div>
+                </div>
+
+                  <div>
+                  <input type="range" class="custom-range col-md-8" min="0" max="1" step="0.01" id="customRange1" onclick="ListItems()">     
+                </div>
+
+                <!-- Area Chart -->
+               <div class="card-deck">
+
+                <div class="mh-100 col-md-10 row align-items-start ">
+                  <div class="card shadow mb-2">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header ">
+                      <h6 class="m-0 font-weight-bold text-primary">Cikk szövege</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <div class="chart-area">
+                        <div id="contents" class="pre-scrollable">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                       
+                <div class="w-100"></div> 
+                <div class="card mb-4">
+                    <div class="font-weight-bold text-primary card-header">Eredeti címkék
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text "id="original1"></p>
+                    </div>
+                  </div>
+
+                  <div class="card mb-4">
+                    <div class="font-weight-bold text-primary card-header" >Ajánlott címkék
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" id="recommended1"></p>
+                    </div>
+                  </div>
+
+                  
+
+                  <div class="card mb-4">
+                    <div class="font-weight-bold text-primary card-header">Eredeti (egyéb) címkék
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" id="original2"></p>
+                    </div>
+                  </div>
+
+                  <div class="card mb-4">
+                    <div class="font-weight-bold text-primary card-header">Ajánlott (egyéb) címkék
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" id="recommended2"></p>
+                    </div>
+                  </div>
+                </div>
+            
+              
+
+          <!-- Content Row -->
+          <div class="row align-items-start">
+
+            <!-- HETILAP Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">HETILAP</div>
+                      <div class="text-xs">cikk: <b>110 ezer</b></div>
+                      <div class="text-xs">címke: <b>1023 db</b></div>
+                      <div class="text-xs">token: <b>73 millió</b></div>
+                      <div class="text-xs">type: <b>62 ezer</b></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-200"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- HETILAP + Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">HETILAP +</div>
+                      <div class="text-xs">cikk: <b>110 ezer</b></div>
+                      <div class="text-xs">címke: <b>26901 db</b></div>
+                      <div class="text-xs">token: <b>73 millió</b></div>
+                      <div class="text-xs">type: <b>36 ezer</b></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-200"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ONLINE Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ONLINE</div>
+                      <div class="text-xs">cikk: <b>80 ezer</b></div>
+                      <div class="text-xs">címke: <b>76654 db</b></div>
+                      <div class="text-xs">token: <b>35 millió</b></div>
+                      <div class="text-xs">type: <b>33 ezer</b></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-200"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- HETILAP +ONLINE Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">HETILAP +ONLINE</div>
+                      <div class="text-xs">cikk: <b>195 ezer</b></div>
+                      <div class="text-xs">címke: <b>104432 db</b></div>
+                      <div class="text-xs">token: <b>112 millió</b></div>
+                      <div class="text-xs">type: <b>38 ezer</b></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-200"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            </div>
+            <div class="text-xs offset-5">PROJEKT - 2019_Varga Balázs - Ragó Ádám</div>
+        </div>  
+       
+      </div>
+
+      
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="jquery-1.12.0.js"></script>
+
+</body>
+
+</html>
